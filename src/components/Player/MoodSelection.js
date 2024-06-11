@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { loFi, hipHop, afrobeats, rnb } from '@/data/songData';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { Box, IconButton, Slider, Stack, Typography } from '@mui/material';
-import { PlayArrowRounded, PauseRounded, FastForwardRounded, FastRewindRounded, VolumeUpRounded, VolumeDownRounded, QueueMusicRounded } from '@mui/icons-material';
+import { PlayArrowRounded, PauseRounded, FastForwardRounded, FastRewindRounded, VolumeUpRounded, VolumeDownRounded, QueueMusicRounded, ExpandMoreRounded, ExpandLessRounded } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
 import './MoodSelection.css';
 import s from './MoodSelection.module.css';
@@ -112,7 +112,8 @@ export default function MoodSelection() {
     return (
         <MoodWidget>
             <IconButton aria-label="toggle mood selector" onClick={() => setShowMoodSelector(!showMoodSelector)}>
-                <QueueMusicRounded/>
+                <QueueMusicRounded/> 
+                <ExpandMoreRounded /> 
             </IconButton>
             {showMoodSelector && (
                 <>
