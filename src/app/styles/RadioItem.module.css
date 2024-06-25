@@ -1,0 +1,31 @@
+.root {
+    @apply text-black border-2 border-gray-500 border-opacity-20 border-solid h-8 w-8 flex justify-center items-center m-6 rounded-3xl focus:outline-2 focus:outline focus:outline-offset-2;
+  }
+
+.dark {
+    background-color: #1A191B;
+}
+
+.pastel-pink {
+    background-color: #f5e1e1;
+}
+
+.pastel-blue {
+    background-color: #E1F5F3;
+}
+
+.violet {
+ background-color: #b39ffe;
+}
+
+.gradient {
+    background-color: linear-gradient(90deg, #FFC593 0%, #BC7198 100%);
+}
+
+.lofi {
+    background-color: #FFC593;
+}
+
+.ditoo {
+    background-color: #BC7198;
+}

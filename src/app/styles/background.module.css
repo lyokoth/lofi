@@ -1,0 +1,82 @@
+
+.background {
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../public/9afe0493484903.5e66500f8dea4.gif') !important;
+}
+
+.backgroundSecondary {
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../public/lofi-girl.gif') !important;
+}
+
+.radio_indicator {
+    background-color: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC, #FFE0F3);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.main {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+.leftSide {
+    flex: 0.3;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.backgroundSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--background-secondary);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    z-index: 100;
+}
+
+.register {
+    position: relative;
+    justify-content: center;
+}
+
+.chatbox {
+    height: 500px;
+    width: 500px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+

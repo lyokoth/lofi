@@ -85,6 +85,7 @@ export default function MusicSlider() {
           maxWidth: '100%',
           margin: '20px',
           padding: '20px',
+          brorderRadius: '20px',
           backgroundColor:
             theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
             backdropFilter: 'blur(40px)',

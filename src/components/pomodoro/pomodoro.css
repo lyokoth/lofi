@@ -1,0 +1,34 @@
+
+  
+  .time-display {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .controls button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .controls button:first-of-type {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .controls button:nth-of-type(2) {
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  .controls button:last-of-type {
+    background-color: #d9534f;
+    color: white;
+  }
+
+  .controls button:hover {
+    transform: scale(1.0)
+  }

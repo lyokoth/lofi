@@ -28,7 +28,26 @@ const TinyText = styled('div')(({ theme }) => ({
     letterSpacing: 0.2,
 }));
 
-export default function Weather() {
+//current time and date 
+
+const Time = () => {
+    const [time, setTime] = useState(new Date().toLocaleTimeString());
+    const [date, setDate] = useState(new Date().toLocaleDateString());
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date().toLocaleTimeString());
+            setDate(new Date().toLocaleDateString());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+    return (
+        <div>
+            <div>{time}</div>
+            <TinyText>{date}</TinyText>
+        </div>
+    );
+}
+function Weather() {
     const [weatherData, setWeatherData] = useState(null);
     const theme = useTheme();
     const [location, setLocation] = useState(null);
@@ -54,9 +73,8 @@ export default function Weather() {
     const WeatherDetails = ({weatherData}) => {
         if (!weatherData) return <div>Loading...</div>;
         return (
-            <div style={{ height: "500px", width: "500px" }}>
-                <div>Current Weather: {weatherData.weather.main}</div>
-                <div>Temperature: {weatherData.main.temp}</div>
+            <div  style={{ height: "100px", width: "100px" }}>
+               {weatherData.weather[0].description}
             </div>
         );
     };
@@ -87,8 +105,9 @@ export default function Weather() {
                 {weatherData.weather[0].main}
             </div>
             <div className={styles.temperature}>
-                {Math.round(weatherData.main.temp)}°C   
+                
             </div>
+          
             </span>
 
         </WeatherWidget>
@@ -100,6 +119,9 @@ export default function Weather() {
     </IconButton>
     {open && <WeatherDetails weatherData={weatherData} />}
 </div>
+
     );
 
 }
+
+export default Weather;

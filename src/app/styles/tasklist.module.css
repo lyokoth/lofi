@@ -1,0 +1,12 @@
+.tasklist {
+    height: 200px;
+
+}
+
+.task {
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+
+}
+

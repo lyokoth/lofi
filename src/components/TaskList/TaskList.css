@@ -1,0 +1,110 @@
+.container {
+  margin-left: 5px;
+    width: 300px;
+  }
+  
+  .task {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 5px;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .heading {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .taskList {
+    max-height: 180px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  
+  .taskItem {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 5px;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+  
+.addTask {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 5px;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .taskText {
+    flex-grow: 1;
+  }
+  
+  .tabContainer {
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  
+  .active {
+    background-color: #007bff;
+    color: #fff;
+    justify-content: space-between;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .tab {
+    background-color: #007bff;
+    color: #fff;
+    justify-content: space-between;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .tabSelected {
+    background-color: #0056b3;
+  }
+  /* Path: src/components/TaskList/TaskList.css */
+
+  .taskText {
+    flex-grow: 1;
+  }
+  
+  .tabContainer {
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  
+  .tab {
+    background-color: #007bff;
+    color: #fff;
+    justify-content: space-between;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .tabSelected {
+    background-color: #0056b3;
+  }
+  

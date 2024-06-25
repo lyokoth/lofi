@@ -1,6 +1,7 @@
+'use client'
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { loFi, hipHop, afrobeats, rnb } from '@/data/songData';
+import { loFi, hipHop, afrobeats, rnb } from '../../data/songData';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { Box, IconButton, Slider, Stack, Typography } from '@mui/material';
 import { PlayArrowRounded, PauseRounded, FastForwardRounded, FastRewindRounded, VolumeUpRounded, VolumeDownRounded, QueueMusicRounded, ExpandMoreRounded, ExpandLessRounded } from '@mui/icons-material';
@@ -34,7 +35,7 @@ const formatDuration = (value) => {
     return `${minutes}:${String(seconds).padStart(2, '0')}`;
 };
 
-export default function MoodSelection() {
+function MoodSelection() {
     const [selectedMood, setSelectedMood] = useState('lofi');
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [currentPlaylist, setCurrentPlaylist] = useState(loFi);
@@ -226,3 +227,4 @@ export default function MoodSelection() {
         </MoodWidget>
     );
 }
+export default MoodSelection;
