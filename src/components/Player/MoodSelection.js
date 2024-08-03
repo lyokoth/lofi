@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { loFi, hipHop, afrobeats, rnb } from '../../data/songData';
+import { loFi, hipHop, afrobeats, rnb, jazz } from '../../data/songData';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { Box, IconButton, Slider, Stack, Typography } from '@mui/material';
 import { PlayArrowRounded, PauseRounded, FastForwardRounded, FastRewindRounded, VolumeUpRounded, VolumeDownRounded, QueueMusicRounded, ExpandMoreRounded, ExpandLessRounded } from '@mui/icons-material';
@@ -56,6 +56,9 @@ function MoodSelection() {
                 break;
             case 'rnb':
                 playlist = rnb;
+                break;
+            case 'jazz':
+                playlist = jazz;
                 break;
             case 'lofi':
             default:
