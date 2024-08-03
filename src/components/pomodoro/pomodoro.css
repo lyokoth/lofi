@@ -32,3 +32,17 @@
   .controls button:hover {
     transform: scale(1.0)
   }
+
+  .intervals button {
+      margin: 0 0px;
+      padding: 5px 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .intervals button:first-of-type {
+    background-color: #4caf50;
+    color: white;
+  }

@@ -143,6 +143,10 @@ function MoodSelection() {
                             <RadioGroup.Indicator className="mr-2" />
                             RnB
                         </RadioGroup.Item>
+                        <RadioGroup.Item id="jazz" value="jazz" className="flex items-center">
+                            <RadioGroup.Indicator className="mr-2" />
+                            Jazz
+                        </RadioGroup.Item>
                     </RadioGroup.Root>
                 </>
             )}

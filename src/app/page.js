@@ -13,7 +13,11 @@ import { useAuth } from 'src/hooks/useAuth';  // Ensure correct path to your cus
 import Login from '../app/login/page';
 
 function Page() {
-
+    const { user } = useAuth();
+ 
+    if (!user) {
+        return <Login />;
+    }
 
 
     

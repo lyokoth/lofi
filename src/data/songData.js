@@ -31,6 +31,16 @@ export const loFi = [
     }
 ];
 
+export const jazz = [
+    {
+        id: 0,
+        name: "Camping Night",
+        artist: 'アトラスサウンドチーム',
+        mood: "jazz",
+        src: "assets/camping-night.mp3",
+    }
+]
+
 export const hipHop = [
     {
         id: 0,

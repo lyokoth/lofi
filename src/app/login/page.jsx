@@ -1,19 +1,33 @@
-'use client'
-import React, {useState} from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import './login.css';
 import { Formik } from 'formik';
 import { Button } from 'src/components/ui/button';
 import Link from 'next/link';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { auth, provider } from 'src/lib/firebase';
+import { styled, useTheme } from '@mui/material/styles';
+
+const LoginContainer = styled('div')(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    borderRadius: 16,
+    width: 343,
+    maxWidth: '100%',
+    margin: 'auto',
+    position: 'relative',
+    zIndex: 1,
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
+    backdropFilter: 'blur(40px)',
+}));
+
 const Login = () => {
-    const [email, setEmail] = useState('');
-   
-    const [password, setPassword] = useState('');
-   
     const router = useRouter();
+
     const signInWithEmail = async (values) => {
         const { email, password } = values;
         try {
@@ -24,6 +38,7 @@ const Login = () => {
             toast.error(error.message);
         }
     };
+
     const signInWithGoogle = async () => {
         try {
             const userCredential = await signInWithPopup(auth, provider);
@@ -34,45 +49,50 @@ const Login = () => {
             console.error(error);
             toast.error(error.message);
         }
-    };  
+    };
+
     return (
-        <div className="login-container">
-            <h1>Log in to lo-fi.</h1>
-            <ToastContainer />
-            <Formik
-                initialValues={{ email: '', password: '' }}
-                onSubmit={async (values) => {
-                    signInWithEmail(values);
-                }}
-            >
-                {({ handleChange, values }) => (
-                    <form>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={values.email}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={values.password}
-                            onChange={handleChange}
-                        />
-                        <Button type="submit">Log in</Button>
-                    </form>
-                )}
-            </Formik>
-            <Button onClick={signInWithGoogle}>Sign in with Google</Button>
-          
+        <>
+            <LoginContainer>
+                <h1>Log in to lo-fi.</h1>
+                <ToastContainer />
+                <Formik
+                    initialValues={{ email: '', password: '' }}
+                    onSubmit={async (values, { setSubmitting }) => {
+                        setSubmitting(true);
+                        await signInWithEmail(values);
+                        setSubmitting(false);
+                    }}
+                >
+                    {({ handleChange, values, handleSubmit, isSubmitting }) => (
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                value={values.email}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                value={values.password}
+                                onChange={handleChange}
+                            />
+                            <Button type="submit" disabled={isSubmitting}>
+                                Log in
+                            </Button>
+                        </form>
+                    )}
+                </Formik>
+                <Button onClick={signInWithGoogle}>Sign in with Google</Button>
                 <Link href="/welcome">
                     <span>Sign up</span>
                 </Link>
-           
-        </div>
+            </LoginContainer>
+        </>
     );
 }
+
 export default Login;
-// Compare this snippet from src/app/pages/Welcome/page.jsx:
