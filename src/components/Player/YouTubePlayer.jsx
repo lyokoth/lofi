@@ -13,7 +13,7 @@ import {
     FastRewindRounded, PlayCircle, PauseCircle,
     FastForwardRounded, PlaylistPlay
 } from '@mui/icons-material';
-import { tokyo, lofiGirl, videoGame, jazz } from 'src/data/youtubePlaylistData';
+import { tokyo, lofiGirl, videoGame, jazz, krnb } from 'src/data/youtubePlaylistData';
 import styles from './lofi.module.css';
 
 const Widget = styled('div')(({ theme }) => ({
@@ -113,6 +113,12 @@ const YouTubePlayer = () => {
             case'jazz':
                 setPlaylist(jazz);
                 break;
+            case 'hiphop':
+                setPlaylist(hiphop);
+                break;
+            case 'krnb':
+                setPlaylist(krnb);
+                break; 
             default:
                 setPlaylist(tokyo);
         }
