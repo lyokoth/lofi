@@ -76,6 +76,10 @@ const Timer = () => {
         setMinutes(0);
         setSeconds(0);
         break;
+      case 'workday':
+        setHours(8);
+        setMinutes(0);
+        setSeconds(0);
       default:
         break;
     }
@@ -95,6 +99,7 @@ const Timer = () => {
         <button onClick={() => selectInterval('regular')}>Regular (25:00)</button>
         <button onClick={() => selectInterval('short')}>Short Break (5:00)</button>
         <button onClick={() => selectInterval('long')}>Long Break (60:00)</button>
+        <button onClick={() => selectInterval('workday')}>Work Day (8:00:00)</button>
       </div>
     </PomoodoroWidget>
   );
