@@ -1,6 +1,20 @@
 
-  
+  .circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .timer-circle {
+    transform: rotate(-90deg);
+
+  }
+
   .time-display {
+    position: absolute;
+    font-weight: bold;
+    text-align: center;
     font-size: 48px;
     margin-bottom: 20px;
   }
@@ -30,7 +44,8 @@
   }
 
   .controls button:hover {
-    transform: scale(1.0)
+    transform: scale(1.0);
+    outline: solid var(--background-primary)
   }
 
   .intervals button {
@@ -46,3 +61,12 @@
     background-color: #4caf50;
     color: white;
   }
+
+ .intervals button:nth-child(2) {
+  background-color: #f0ad4e;
+  color: white;
+ }
+
+ .intervals button:hover {
+  outline: solid var(--background-primary)
+ }
