@@ -1,0 +1,34 @@
+{
+    "root": {
+      "intents": [
+        {
+          "tag": "greeting",
+          "patterns": [
+            "Hi",
+            "How are you?",
+            "How do you do?",
+            "Hey"
+          ],
+          "responses": [
+            "How are you today?",
+            "Good to seee you!",
+            "Hi there, how can I help you?"
+          ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "see ya!",
+                "bye bye!",
+                "kwaheri!"
+            ],
+            "responses":[
+                "Goodbye! Have a great day!",
+                "Talk to you later!",
+                "Come back soon!"
+            ]
+        }
+      ]
+    }
+  }
+  
