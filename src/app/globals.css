@@ -1,139 +1,139 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
-      --background-primary: #ffffff;;
-      --background-secondary: #ffffff;
-      --accent-primary: #fffff;
-      --accent-secondary: #111;
-      --selection: var(--cyan);
-      --text-base: #111;
-      --text-primary: #111;
-      --text-secondary: #6b755a;
-    }
+@layer base {
+  :root {
+    --background-primary: #ffffff;
+    --background-secondary: #ffffff;
+    --accent-primary: #ffffff;
+    --accent-secondary: #111;
+    --selection: var(--cyan);
+    --text-base: #111;
+    --text-primary: #111;
+    --text-secondary: #6b755a;
+    --background-image: url('/9afe0493484903.5e66500f8dea4.gif')
+  }
 
-    [data-theme='dark'] {
-      --background-primary: #787a73;
-      --background-secondary: #787a73;
-      --accent-primary: #fffff; 
-      --accent-secondary: #111;
-      --selection: var(--cyan);
-      --text-base: #ffffff;
-      --text-primary: #ffffff;
-      --text-secondary: #ffffff;
-    }
+  [data-theme='dark'] {
+    --background-primary: #787a73;
+    --background-secondary: #787a73;
+    --accent-primary: #ffffff; 
+    --accent-secondary: #111;
+    --selection: var(--cyan);
+    --text-base: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --background-image: url('/lofi-vaporwave-purple-sunset-city-kvsu688i8ixc4xe8.gif');
+  }
 
-
-    [data-theme='violet'] {
-      --background-primary:  #dabcff;
-      --background-secondary: #dabcff;
-      --accent-primary:  #dabcff;
-      --accent-secondary: #dabcff;
-      --selection: var(--cyan);
-      --text-base: #fff;
-      --text-primary: #ffff;
-      --text-secondary: #635c7c;
-       background-image: url('/public/lofi-vaporwave-purple-sunset-city-kvsu688i8ixc4xe8.gif');
-    }
-    
-    [data-theme='pastelPink'] {
-      --background-primary:#F6DAF0;
-      --background-secondary: #F6DAF0;
-      --accent-primary: #f5e1e1;
-      --accent-secondary: #f5e1e1;
-      --selection: var(--accent-primary);
-      --text-base: #000000;
-      --text-primary: #000000;
-      --text-secondary: #000000;
-    }
-
-    [data-theme='pastelBlue'] {
-      --background-primary:  #B2C9EB;
-      --background-secondary:  #B2C9EB;
-      --accent-primary: #e1f5f5;
-      --accent-secondary: #e1f5f5;
-      --selection: var(--cyan);
-      --text-base: #000000;
-      --text-primary: #000000;
-      --text-secondary: #000000;
-    }
-
-    [data-theme='light'] {
-      --background-primary: #f5f5f5;
-      --background-secondary: #f5f5f5;
-      --accent-primary: #f5f5f5;
-      --accent-secondary: #f5f5f5;
-      --selection: var(--cyan);
-      --text-base: #000000;
-      --text-primary: #000000;
-      --text-secondary: #000000;
-    }
-
-    [data-theme='gradient'] {
-      --background-primary: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC,  #FFE0F3);
-      --background-secondary: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC,  #FFE0F3);
-      --accent-primary: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC,  #FFE0F3);
-      --accent-secondary: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC,  #FFE0F3);
-      --selection: var(--cyan);
-      --text-base: #000000;
-      --text-primary: #000000;
-      --text-secondary: #000000;
-    
-    }
-
-    [data-theme='lofiRed'] {
-      --background-primary: #eb9d9d;
-      --background-secondary: #eb9d9d;
-      --accent-primary: #eb9d9d;
-      --accent-secondary: #f8b0b0;
-      --selection: hsl(0, 100%, 50%);
-      --text-base: #000000;
-      --text-primary: #000000;
-      --text-secondary: #000000;
-      
-    }
-
-    [data-theme='ditoo'] {
-      --background-primary: #c29bca;
-      --background-secondary: #c29bca;
-      --accent-primary: #c29bca;
-      --accent-secondary: #c29bca;
-      --selection: #c29bca;
-      --text-base: #000000;
-      --text-primary: #000000;
-      --text-secondary: #000000;
+  [data-theme='violet'] {
+    --background-primary:  #dabcff;
+    --background-secondary: #dabcff;
+    --accent-primary:  #dabcff;
+    --accent-secondary: #dabcff;
+    --selection: var(--cyan);
+    --text-base: #fff;
+    --text-primary: #ffffff;
+    --background-image: url('/lofi-vaporwave-purple-sunset-city-kvsu688i8ixc4xe8.gif');
+  }
   
-    }
-  
+  [data-theme='pastelPink'] {
+    --background-primary: #F6DAF0;
+    --background-secondary: #F6DAF0;
+    --accent-primary: #f5e1e1;
+    --accent-secondary: #f5e1e1;
+    --selection: var(--accent-primary);
+    --text-base: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --background-image: url('/original-e90cfcc6439fa0fe1dd18df11df7c414.gif')
+  }
 
- html,
+  [data-theme='pastelBlue'] {
+    --background-primary: #B2C9EB;
+    --background-secondary: #B2C9EB;
+    --accent-primary: #e1f5f5;
+    --accent-secondary: #e1f5f5;
+    --selection: var(--cyan);
+    --text-base: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+  }
+
+  [data-theme='light'] {
+    --background-primary: #f5f5f5;
+    --background-secondary: #f5f5f5;
+    --accent-primary: #f5f5f5;
+    --accent-secondary: #f5f5f5;
+    --selection: var(--cyan);
+    --text-base: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+  }
+
+  [data-theme='gradient'] {
+    --background-image: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC, #FFE0F3);
+    --accent-primary: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC, #FFE0F3);
+    --accent-secondary: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC, #FFE0F3);
+    --selection: var(--cyan);
+    --text-base: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+  }
+
+  [data-theme='lofiRed'] {
+    --background-primary: #eb9d9d;
+    --background-secondary: #eb9d9d;
+    --accent-primary: #eb9d9d;
+    --accent-secondary: #f8b0b0;
+    --selection: hsl(0, 100%, 50%);
+    --text-base: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+  }
+
+  [data-theme='ditoo'] {
+    --background-primary: #c29bca;
+    --background-secondary: #c29bca;
+    --accent-primary: #c29bca;
+    --accent-secondary: #c29bca;
+    --selection: #c29bca;
+    --text-base: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --background-image: url('/9afe0493484903.5e66500f8dea4.gif')
+    
+    
+    
+  }
+
+  html,
   body {
-  background-color: var(--background-primary);
-  color: var(--text-base);
-  padding: 0;
-  padding-bottom: 64px;
-  margin: 0;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
+    background: var(--background-primary);
+    background-image: var(--background-image, none);
+    color: var(--text-base);
+    padding: 0;
+    padding-bottom: 64px;
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    
-    }
+  a {
+    color: inherit;
+    text-decoration: none;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
