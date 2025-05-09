@@ -4,7 +4,7 @@ import * as RadioGroup from '@radix-ui/react-radio-group';
 import  RadioItem  from '../RadioItem/RadioItem';
 import cn from 'clsx';
 import { useTheme } from 'next-themes';
-import s from '../../../app/styles/Theme.module.css';
+import s from '../../../app/styles/theme.module.css';
 
 function SelectTheme() {
     const { theme, setTheme } = useTheme();
@@ -17,7 +17,7 @@ function SelectTheme() {
                 value={theme}
                 className={cn(s.root)}
                 onValueChange={(e) => setTheme(e)}
-                style={{'border': '1px solid #000'}}
+                style={{'border': '2px solid #000'}}
            
             >
                 <RadioItem value="default"></RadioItem>

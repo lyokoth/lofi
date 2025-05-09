@@ -1,8 +1,8 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material';
 import './pomodoro.css';
+import { toast } from 'react-toastify';
 
 const PomoodoroWidget = styled('div')(({ theme }) => ({
   padding: 16,
@@ -80,6 +80,9 @@ const Timer = () => {
        case 'lunch break':
         newTime = 30 * 60;
         break;
+        case 'test':
+          newTime = 1 * 60;
+          break;
     }
     setTimeLeft(newTime);
     setTotalTime(newTime);
@@ -131,6 +134,7 @@ const Timer = () => {
       <div className="intervals">
         <button onClick={() => selectInterval('regular')}>Regular (25:00)</button>
         <button onClick={() => selectInterval('short')}>Short Break (5:00)</button>
+        <button onClick={() => selectInterval('test')}>Test (1 min)</button>
         <button onClick={() => selectInterval('long')}>Long Break (60:00)</button>
         <button onClick={() => selectInterval('Lunch Break')}>Lunch Break(30:00)</button>
         <button onClick={() => selectInterval('workday')}>Work Day (8:00:00)</button>

@@ -51,6 +51,18 @@ const Login = () => {
         }
     };
 
+    const loginWithSpotfiy = async () => {
+        try {
+            const userCredential = await signInWithPopup(auth, provider);
+            const user = userCredential.user;
+            toast.success(`Hello, ${user.displayName}`);
+            router.push('/home');
+        } catch (error) {
+            console.error(error);
+            toast.error(error.message);
+        }
+    };
+
     return (
         <>
             <LoginContainer>
@@ -90,6 +102,7 @@ const Login = () => {
                 <Link href="/welcome">
                     <span>Sign up</span>
                 </Link>
+                <Button onClick={loginWithSpotfiy}>Sign in with Spotify</Button>
             </LoginContainer>
         </>
     );

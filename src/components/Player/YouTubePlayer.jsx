@@ -7,13 +7,13 @@ import {
 } from '@mui/material';
 import ReactPlayer from 'react-player';
 import Button from '@mui/material/Button';
-
+import { tokyo, lofiGirl, videoGame, jazz, krnb } from 'src/data/youtubePlaylistData';
 import { 
     CloseTwoTone, ExpandMoreTwoTone,  ExpandLessTwoTone,
     FastRewindRounded, PlayCircle, PauseCircle,
     FastForwardRounded, PlaylistPlay
 } from '@mui/icons-material';
-import { tokyo, lofiGirl, videoGame, jazz, krnb } from 'src/data/youtubePlaylistData';
+
 import styles from './lofi.module.css';
 
 const Widget = styled('div')(({ theme }) => ({
@@ -150,6 +150,12 @@ const YouTubePlayer = () => {
                     <Button onClick={() => selectPlaylist('jazz')} variant="contained">
                         Jazz
                     </Button>
+                    <Button onClick={() => selectPlaylist('hipHop')} variant="contained">
+                       Hip Hop 
+                       </Button>
+                    <Button onClick={() => selectPlaylist('krnb')} variant="contained">
+                       K-RnB 
+                       </Button>
                     </div>
                 </Widget>
             </Dialog>

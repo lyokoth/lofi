@@ -1,13 +1,10 @@
-'use client'
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { loFi, hipHop, afrobeats, rnb, jazz } from '../../data/songData';
-import * as RadioGroup from '@radix-ui/react-radio-group';
-import { Box, IconButton, Slider, Stack, Typography } from '@mui/material';
-import { PlayArrowRounded, PauseRounded, FastForwardRounded, FastRewindRounded, VolumeUpRounded, VolumeDownRounded, QueueMusicRounded, ExpandMoreRounded, ExpandLessRounded } from '@mui/icons-material';
+import React, { useState, useEffect } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import './MoodSelection.css';
-import s from './MoodSelection.module.css';
+import { Box, IconButton, Typography, Stack, Slider, Dialog } from '@mui/material';
+import { QueueMusicRounded, ExpandMoreRounded, VolumeUpRounded, VolumeDownRounded } from '@mui/icons-material';
+import * as RadioGroup from '@radix-ui/react-radio-group';
+import { loFi, hipHop, afrobeats, rnb, jazz } from '../../data/songData';
+import { Icon } from '@iconify/react';
 
 const MoodWidget = styled('div')(({ theme }) => ({
     padding: 16,
@@ -17,8 +14,8 @@ const MoodWidget = styled('div')(({ theme }) => ({
     margin: 'auto',
     position: 'relative',
     zIndex: 1,
-    backgroundColor:
-        theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
     backdropFilter: 'blur(40px)',
 }));
 
@@ -28,6 +25,28 @@ const TinyText = styled(Typography)({
     fontWeight: 500,
     letterSpacing: 0.2,
 });
+
+const StyledSlider = styled(Slider)(({ theme }) => ({
+    height: 13,
+    maxWidth: 50,
+    backgroundColor: theme.palette.background.default,
+    '& .MuiSlider-thumb': {
+        height: 20,
+        width: 20,
+        borderRadius: '50%',
+        backgroundColor: 'var(--background-primary)',
+    },
+    '& .MuiSlider-track': {
+        height: 4,
+        borderRadius: 2,
+        backgroundColor: theme.palette.secondary.main,
+    },
+    '& .MuiSlider-rail': {
+        height: 4,
+        borderRadius: 2,
+        backgroundColor: theme.palette.divider,
+    },
+}));
 
 const formatDuration = (value) => {
     const minutes = Math.floor(value / 60);
@@ -39,62 +58,55 @@ function MoodSelection() {
     const [selectedMood, setSelectedMood] = useState('lofi');
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [currentPlaylist, setCurrentPlaylist] = useState(loFi);
-    const [audio, setAudio] = useState(new Audio(currentPlaylist[currentSongIndex].src));
+    const [audio, setAudio] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [position, setPosition] = useState(0);
-    const [showMoodSelector, setShowMoodSelector] = useState(true); // State to control visibility
+    const [openDialog, setOpenDialog] = useState(false);
     const theme = useTheme();
 
     useEffect(() => {
         let playlist;
         switch (selectedMood) {
-            case 'hiphop':
-                playlist = hipHop;
-                break;
-            case 'afrobeats':
-                playlist = afrobeats;
-                break;
-            case 'rnb':
-                playlist = rnb;
-                break;
-            case 'jazz':
-                playlist = jazz;
-                break;
-            case 'lofi':
-            default:
-                playlist = loFi;
-                break;
+            case 'hiphop': playlist = hipHop; break;
+            case 'afrobeats': playlist = afrobeats; break;
+            case 'rnb': playlist = rnb; break;
+            case 'jazz': playlist = jazz; break;
+            case 'lofi': 
+            default: playlist = loFi; break;
         }
         setCurrentPlaylist(playlist);
         setCurrentSongIndex(0);
+        setOpenDialog(false);
     }, [selectedMood]);
 
     useEffect(() => {
         if (audio) {
             audio.pause();
+            audio.removeEventListener('timeupdate', updatePosition);
+            audio.removeEventListener('ended', handleNextSong);
         }
+
         const newAudio = new Audio(currentPlaylist[currentSongIndex].src);
+        newAudio.addEventListener('timeupdate', updatePosition);
+        newAudio.addEventListener('ended', handleNextSong);
+
         setAudio(newAudio);
         setPosition(0);
-        if (isPlaying) {
-            newAudio.play();
-        }
+        if (isPlaying) newAudio.play();
+
+        return () => {
+            newAudio.pause();
+            newAudio.removeEventListener('timeupdate', updatePosition);
+            newAudio.removeEventListener('ended', handleNextSong);
+        };
     }, [currentPlaylist, currentSongIndex]);
 
-    useEffect(() => {
-        if (audio) {
-            const updatePosition = () => setPosition(audio.currentTime);
-            audio.addEventListener('timeupdate', updatePosition);
-            audio.addEventListener('ended', () => handleSongChange(true));
-
-            return () => {
-                audio.removeEventListener('timeupdate', updatePosition);
-                audio.removeEventListener('ended', () => handleSongChange(true));
-            };
-        }
-    }, [audio]);
+    const updatePosition = () => {
+        setPosition(audio?.currentTime || 0);
+    };
 
     const handlePlayPause = () => {
+        if (!audio) return;
         if (isPlaying) {
             audio.pause();
         } else {
@@ -103,135 +115,80 @@ function MoodSelection() {
         setIsPlaying(!isPlaying);
     };
 
-    const handleSongChange = (forward = true) => {
-        let newIndex;
-        if (forward) {
-            newIndex = (currentSongIndex + 1) % currentPlaylist.length;
-        } else {
-            newIndex = (currentSongIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
-        }
-        setCurrentSongIndex(newIndex);
+    const handleNextSong = () => {
+        setCurrentSongIndex((prevIndex) => (prevIndex + 1) % currentPlaylist.length);
+    };
+
+    const handlePrevSong = () => {
+        setCurrentSongIndex((prevIndex) => (prevIndex - 1 + currentPlaylist.length) % currentPlaylist.length);
     };
 
     return (
         <MoodWidget>
-            <IconButton aria-label="toggle mood selector" onClick={() => setShowMoodSelector(!showMoodSelector)}>
-                <QueueMusicRounded/> 
-                <ExpandMoreRounded /> 
+            <IconButton onClick={() => setOpenDialog(!openDialog)}>
+                <QueueMusicRounded /> <ExpandMoreRounded />
             </IconButton>
-            {showMoodSelector && (
-                <>
-                    <h1 className="text-2xl font-bold">Select your mood</h1>
-                    <RadioGroup.Root
-                        className="flex items-center justify-center space-x-4"
-                        value={selectedMood}
-                        onValueChange={(value) => setSelectedMood(value)}
-                    >
-                        <RadioGroup.Item id="lofi" value="lofi" className="flex items-center">
+
+            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+                <h1 className="text-2xl font-bold">Select your mood</h1>
+                <RadioGroup.Root
+                    className="flex items-center justify-center space-x-4"
+                    value={selectedMood}
+                    onValueChange={setSelectedMood}
+                >
+                    {['lofi', 'hiphop', 'afrobeats', 'rnb', 'jazz'].map((mood) => (
+                        <RadioGroup.Item key={mood} value={mood} className="flex items-center">
                             <RadioGroup.Indicator className="mr-2" />
-                            Lofi
+                            {mood.charAt(0).toUpperCase() + mood.slice(1)}
                         </RadioGroup.Item>
-                        <RadioGroup.Item id="hiphop" value="hiphop" className="flex items-center">
-                            <RadioGroup.Indicator className="mr-2" />
-                            HipHop
-                        </RadioGroup.Item>
-                        <RadioGroup.Item id="afrobeats" value="afrobeats" className="flex items-center">
-                            <RadioGroup.Indicator className="mr-2" />
-                            Afrobeats
-                        </RadioGroup.Item>
-                        <RadioGroup.Item id="rnb" value="rnb" className="flex items-center">
-                            <RadioGroup.Indicator className="mr-2" />
-                            RnB
-                        </RadioGroup.Item>
-                        <RadioGroup.Item id="jazz" value="jazz" className="flex items-center">
-                            <RadioGroup.Indicator className="mr-2" />
-                            Jazz
-                        </RadioGroup.Item>
-                    </RadioGroup.Root>
-                </>
-            )}
+                    ))}
+                </RadioGroup.Root>
+            </Dialog>
+
             <Box sx={{ ml: 1.5, minWidth: 0 }}>
                 <Typography variant="caption" color="textSecondary">
-                    {currentPlaylist[currentSongIndex].author}
+                    {currentPlaylist[currentSongIndex]?.author}
                 </Typography>
                 <Typography noWrap>
-                    {currentPlaylist[currentSongIndex].name}
+                    {currentPlaylist[currentSongIndex]?.name}
                 </Typography>
             </Box>
-            <Slider 
-            aria-label="time-inidicator"
-            size="small"
-            value={position}
-            max={audio.duration}
-            onChange={(_, value) => setPosition(value)}
-          sx={{
-            color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
-            height: 4,
-            '& .MuiSlider-thumb': {
-              width: 8,
-              height: 8,
-              transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-              '&::before': {
-                boxShadow: '0 2px 12px 0 rgba(0,0,0,0.4)',
-              },
-              '&:hover, &.Mui-focusVisible': {
-                boxShadow: `0px 0px 0px 8px ${
-                  theme.palette.mode === 'dark'
-                    ? 'rgb(255 255 255 / 16%)'
-                    : 'rgb(0 0 0 / 16%)'
-                }`,
-              },
-              '&.Mui-active': {
-                width: 20,
-                height: 20,
-              },
-            },
-            '& .MuiSlider-rail': {
-              opacity: 0.28,
-            },
-          }}
-        />
+
+            <Slider
+                min={0}
+                max={audio?.duration || 1}
+                value={position}
+                onChange={(_, value) => {
+                    setPosition(value);
+                    if (audio) audio.currentTime = value;
+                }}
+                sx={{ width: '100%', color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)' }}
+            />
+
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
-                <IconButton aria-label="previous song" onClick={() => handleSongChange(false)}>
-                    <FastRewindRounded sx={{ fontSize: '3rem' }} />
+                <IconButton onClick={handlePrevSong}>
+                    <Icon icon="fluent:rewind-20-regular" style={{ fontSize: '2rem' }} />
                 </IconButton>
-                <IconButton aria-label={isPlaying ? 'pause' : 'play'} onClick={handlePlayPause}>
-                    {isPlaying ? <PauseRounded sx={{ fontSize: '3rem' }} /> : <PlayArrowRounded sx={{ fontSize: '3rem' }} />}
+                <IconButton onClick={handlePlayPause}>
+                    <Icon icon={isPlaying ? 'akar-icons:pause' : 'akar-icons:play'} style={{ fontSize: '2rem' }} />
                 </IconButton>
-                <IconButton aria-label="next song" onClick={() => handleSongChange(true)}>
-                    <FastForwardRounded sx={{ fontSize: '3rem' }} />
+                <IconButton onClick={handleNextSong}>
+                    <Icon icon="fluent:next-32-regular" style={{ fontSize: '2rem' }} />
                 </IconButton>
             </Box>
-            <Stack spacing={2} direction="row" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
+
+            <Stack direction="row" sx={{ justifyContent: 'center', mt: 2 }}>
                 <VolumeDownRounded />
-                <Slider
-                    aria-label="Volume"
-                    defaultValue={30}
-                    sx={{
-                        color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
-                        '& .MuiSlider-track': {
-                            border: 'none',
-                        },
-                        '& .MuiSlider-thumb': {
-                            width: 24,
-                            height: 24,
-                            backgroundColor: 'currentColor',
-                            '&::before': {
-                                boxShadow: '0 4px 8px rgba(0,0,0,0.4)',
-                            },
-                            '&:hover, &.Mui-focusVisible, &.Mui-active': {
-                                boxShadow: 'none',
-                            },
-                        },
-                    }}
-                />
+                <StyledSlider defaultValue={30} min={0} max={100} />
                 <VolumeUpRounded />
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: -2 }}>
-                    <TinyText>{formatDuration(position)}</TinyText>
-                    <TinyText>{formatDuration(audio.duration - position)}</TinyText>
-                </Box>
             </Stack>
+
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                <TinyText>{formatDuration(position)}</TinyText>
+                <TinyText>{formatDuration((audio?.duration || 0) - position)}</TinyText>
+            </Box>
         </MoodWidget>
     );
 }
+
 export default MoodSelection;

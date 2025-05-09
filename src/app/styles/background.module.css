@@ -20,7 +20,7 @@
 }
 
 .radio_indicator {
-    background-color: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC, #FFE0F3);
+    background-image: linear-gradient(to right, #D5D3F8, #E5E2F8, #FBF5FC, #FFE0F3);
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -37,13 +37,54 @@
 }
 
 .leftSide {
-    flex: 0.3;
-    align-items: flex-start;
+    
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 10px;
 }
 
+.time {
+    display: flex;
+    text-align: center;
+    font-weight: 500;
+}
+
+.weather {
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the widget */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+
+}
+
+.timer {
+    border-radius: 12px; /* Rounded corners */
+    padding: 24px; /* Spacing inside the timer */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    
+
+}
+
+.musicSlider {
+    border-radius: 12px; /* Rounded corners */
+    padding: 24px; /* Spacing inside the timer */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.taskManager {
+
+}
 .backgroundSelect {
     display: flex;
     justify-content: center;

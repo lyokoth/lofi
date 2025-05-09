@@ -2,6 +2,7 @@
     @apply border-b-2 p-2 mb-4 lg:py-3 lg:px-16 md:mb-12;
     background-color: var(--background-primary);
     border-color: var(--background-secondary);
+   
   }
   
   .list {
@@ -20,4 +21,13 @@
     @apply  text-base font-semibold;
   }
 
-  
+  .theme_dropdown {
+    
+    position: absolute;
+    background-color: var(--background-primary);
+
+  }
+
+  .theme_dropdown.visible {
+    display: grid;
+}

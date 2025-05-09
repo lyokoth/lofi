@@ -5,6 +5,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import styles from './Weather.module.css';
 import { IconButton} from "@mui/material";
 import { CloseTwoTone, ExpandMoreTwoTone, LocationCity, LocationOn } from '@mui/icons-material';
+import Image from "next/image";
 
 // Styled components for Weather Widget
 const WeatherWidget = styled('div')(({ theme }) => ({
@@ -17,7 +18,7 @@ const WeatherWidget = styled('div')(({ theme }) => ({
     position: 'relative',
     zIndex: 1,
     backgroundColor:
-        theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
+         'var(--background-primary)',
     backdropFilter: 'blur(40px)',
 }));    
 
@@ -30,23 +31,7 @@ const TinyText = styled('div')(({ theme }) => ({
 
 //current time and date 
 
-const Time = () => {
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
-    const [date, setDate] = useState(new Date().toLocaleDateString());
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTime(new Date().toLocaleTimeString());
-            setDate(new Date().toLocaleDateString());
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
-    return (
-        <div>
-            <div>{time}</div>
-            <TinyText>{date}</TinyText>
-        </div>
-    );
-}
+
 function Weather() {
     const [weatherData, setWeatherData] = useState(null);
     const theme = useTheme();
@@ -65,6 +50,10 @@ function Weather() {
         setLocation(data);
         getWeather(data.latitude, data.longitude);
     };
+    const convertToF = (kelvin) => {
+        return Math.round((kelvin - 273.15) * 9/5 + 32);
+    }
+
 
     useEffect(() => {
         getLocation();
@@ -73,7 +62,7 @@ function Weather() {
     const WeatherDetails = ({weatherData}) => {
         if (!weatherData) return <div>Loading...</div>;
         return (
-            <div  style={{ height: "100px", width: "100px" }}>
+            <div style={{ height: "100px", width: "100px" }}>
                {weatherData.weather[0].description}
             </div>
         );
@@ -94,17 +83,20 @@ function Weather() {
                     />
                     {weatherData.name}
                 </div>
+                
      
-
-            <img 
+          <div className={styles.weatherDetails}>
+            <img
             src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
             style={{height: '50px'}}
             alt="weather icon"
             />
+            </div>
             <div className={styles.weather}>
                 {weatherData.weather[0].main}
             </div>
             <div className={styles.temperature}>
+                {weatherData.weather[0].temperature}
                 
             </div>
           
@@ -114,10 +106,7 @@ function Weather() {
     ) : (
         <div>Loading...</div>
     )}
-    <IconButton onClick={handleOpen}>
-        {open ? <CloseTwoTone /> : <ExpandMoreTwoTone />}
-    </IconButton>
-    {open && <WeatherDetails weatherData={weatherData} />}
+
 </div>
 
     );

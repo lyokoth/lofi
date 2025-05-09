@@ -61,4 +61,14 @@ const FooterContainer = styled('footer')(({ theme }) => ({
     backdropFilter: 'blur(40px)',
 }));  
 
-export  {Button, Dialog, DialogTitle, DialogContent, FooterContainer}
+const TinyText = styled('div')(({ theme }) => ({
+    fontSize: '0.75rem',
+    opacity: 0.38,
+    color: black,
+    fontWeight: 500,
+    letterSpacing: 0.2,
+}));
+
+
+
+export  {Button, Dialog, DialogTitle, DialogContent, FooterContainer, TinyText}

@@ -1,39 +1,39 @@
 'use client';
-
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'; // Import useSelector to get Redux state
 import styles from './styles/background.module.css';
 import Nav from 'src/components/ui/nav';
 import MusicSlider from 'src/components/Player/MenuPlayer';
-import TaskManager from 'src/components/TaskList/TaskList';
 import Timer from 'src/components/pomodoro/pomodoro';
-import Welcome from '../app/welcome/page';
+//import SelectTheme from 'src/components/ui/SelectTheme/SelectTheme';
 import './globals.css';
-import { useAuth } from 'src/hooks/useAuth';  // Ensure correct path to your custom hook
+ import { useAuth } from 'src/hooks/useAuth';
 import Login from '../app/login/page';
+import Weather from 'src/components/Weather/Weather';
+import FooterPlayer from 'src/components/Player/FooterPlayer';
+import Draggable from 'react-draggable';
 
 function Page() {
-    const { user } = useAuth();
- 
-    if (!user) {
-        return <Login />;
-    }
+  
 
+   // add ability to  add + delete widgets
 
-    
 
 
     return (
-        <div className={styles.background}>
-            <Nav />
-            <div className={styles.leftSide}>
-                <Timer />
-                <MusicSlider />
-            </div>
-            <div className={styles.main}>
-                <TaskManager />
-            </div>
-        </div>
+        <>
+          <Nav />
+        
+        <Draggable>
+        <Weather />
+        </Draggable>
+        <Timer />
+        <MusicSlider />
+
+       
+     
+
+        </>
     );
 }
 
