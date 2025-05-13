@@ -46,9 +46,6 @@ export default function MusicSlider() {
   return (
     
     <Box sx={{ width: '100%', overflow: 'hidden' }}>
-
-      <ReactCardFlip isFlipped={flipped}
-      flipDirection="horizontal">
         <div style={{
           width: 343,
           maxWidth: '100%',
@@ -66,24 +63,9 @@ export default function MusicSlider() {
             </IconButton>
         <MoodSelection selectedMood={selectedMood} setSelectedMood={setSelectedMood} />
           </Widget>
-          <IconButton aria-label="flip"  onClick={() => setFlipped(!flipped)}>
-            <Icon icon="material-symbols:flip-camera-android-rounded" style={{ fontSize: '2rem', color: 'var(--background-primary)' }} />
-            </IconButton>
             </div>
-            <div style={{
-          width: 343,
-          maxWidth: '100%',
-          margin: '20px',
-          padding: '20px',
-          backgroundColor:
-            theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
-            backdropFilter: 'blur(40px)',
-            boxShadow: theme.shadows[3],
-        }}>
-          <YouTubePlayer />
-          
-            </div>
-      </ReactCardFlip>
+
+
    
       </Box>
   );
