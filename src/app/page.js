@@ -27,7 +27,7 @@ function Page() {
         <Draggable>
         <Weather />
         </Draggable>
-        <Timer />
+   
         <MusicSlider />
 
        

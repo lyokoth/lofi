@@ -16,37 +16,7 @@ import {
 
 import styles from './lofi.module.css';
 
-const Widget = styled('div')(({ theme }) => ({
-    padding: 16,
-    borderRadius: 16,
-    width: 343,
-    maxWidth: '100%',
-    margin: 'auto',
-    position: 'relative',
-    zIndex: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
-    backdropFilter: 'blur(40px)',
-}));
-
-const TinyText = styled(Typography)({
-    fontSize: '0.75rem',
-    opacity: 0.38,
-    fontWeight: 500,
-    letterSpacing: 0.2,
-});
-
-const VideoPlayerWidget = styled('div')(({ theme }) => ({
-    padding: 16,
-    borderRadius: 16,
-    width: 200,
-    maxWidth: '100%',
-    margin: 'auto',
-    position: 'relative',
-    zIndex: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
-    backdropFilter: 'blur(40px)',
-}));
-
+ 
 
 const formatDuration = (value) => {
     const minutes = Math.floor(value / 60);
