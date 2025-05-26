@@ -104,7 +104,7 @@ function Weather() {
 
         </WeatherWidget>
     ) : (
-        <div>Loading...</div>
+        <TinyText>Loading...</TinyText>
     )}
 
 </div>

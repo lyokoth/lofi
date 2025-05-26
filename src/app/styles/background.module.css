@@ -37,10 +37,12 @@
 }
 
 .leftSide {
-    
+    flex: 0.3;
+    /* justify-content: center; */
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    margin-top: 10px;
+    flex-direction: column;
+    margin-top: -5px;
 }
 
 .time {
@@ -79,6 +81,8 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    flex: 0.4;
+    margin-top: 30px;
   
 }
 

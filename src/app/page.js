@@ -12,9 +12,10 @@ import Login from '../app/login/page';
 import Weather from 'src/components/Weather/Weather';
 import FooterPlayer from 'src/components/Player/FooterPlayer';
 import Draggable from 'react-draggable';
+import SpotifyWidget from 'src/components/SpotifyPlaylist/Spotify';
 
 function Page() {
-  
+
 
    // add ability to  add + delete widgets
 
@@ -23,16 +24,17 @@ function Page() {
     return (
         <>
           <Nav />
-        
-        <Draggable>
-        <Weather />
-        </Draggable>
-   
-        <MusicSlider />
+          <div className="leftSide">
+            <Weather />
+          <SpotifyWidget />
+        </div>
+        <div className="main">
+          <Timer />
+        </div>
+        <div className="rightSide">
+          <SpotifyWidget />
 
-       
-     
-
+        </div>
         </>
     );
 }
